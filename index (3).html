@@ -1,0 +1,823 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>Healthy U Fitness Studio — Women's Fitness Center, Hyderabad</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300&family=Cormorant+Garamond:ital,wght@1,400;1,500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --red:#D42B4F;--red2:#FF3A60;--glow:rgba(212,43,79,.28);
+  --d1:#080809;--d2:#0F0F12;--d3:#161619;--d4:#1C1C21;--d5:#242429;
+  --line:rgba(255,255,255,.06);--muted:#6E6E7A;--muted2:#A0A0AE;
+  --white:#fff;--cream:#F5EEE8;--nav-h:72px;
+}
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{font-family:'DM Sans',sans-serif;background:var(--d1);color:var(--white);overflow-x:hidden;-webkit-font-smoothing:antialiased}
+img{display:block;max-width:100%}
+a{text-decoration:none;color:inherit}
+button{background:none;border:none;cursor:pointer;font:inherit}
+ul{list-style:none}
+
+.container{width:100%;max-width:1280px;margin:0 auto;padding:0 48px}
+@media(max-width:768px){.container{padding:0 20px}}
+
+.tag{display:inline-flex;align-items:center;gap:8px;color:var(--red2);font-size:11px;font-weight:600;letter-spacing:3px;text-transform:uppercase;margin-bottom:20px}
+.tag::before{content:'';width:28px;height:1.5px;background:var(--red);flex-shrink:0}
+h2.title{font-family:'Bebas Neue',sans-serif;font-size:clamp(44px,6vw,80px);letter-spacing:1px;line-height:.95;margin-bottom:20px}
+h2.title .muted{color:var(--muted)}
+h2.title .accent{color:var(--red)}
+
+.reveal{opacity:0;transform:translateY(36px);transition:opacity .65s cubic-bezier(.22,1,.36,1),transform .65s cubic-bezier(.22,1,.36,1)}
+.reveal.in{opacity:1;transform:none}
+.rl{opacity:0;transform:translateX(-40px);transition:opacity .7s cubic-bezier(.22,1,.36,1),transform .7s cubic-bezier(.22,1,.36,1)}
+.rl.in{opacity:1;transform:none}
+.rr{opacity:0;transform:translateX(40px);transition:opacity .7s cubic-bezier(.22,1,.36,1),transform .7s cubic-bezier(.22,1,.36,1)}
+.rr.in{opacity:1;transform:none}
+.d1{transition-delay:.05s}.d2{transition-delay:.12s}.d3{transition-delay:.19s}.d4{transition-delay:.26s}.d5{transition-delay:.33s}
+
+/* cursor desktop */
+@media(hover:hover){
+  body{cursor:none}
+  .cdot{position:fixed;width:8px;height:8px;border-radius:50%;background:var(--red);pointer-events:none;z-index:9999;transform:translate(-50%,-50%);transition:transform .1s}
+  .cring{position:fixed;width:32px;height:32px;border-radius:50%;border:1px solid rgba(212,43,79,.5);pointer-events:none;z-index:9998;transform:translate(-50%,-50%);transition:left .12s,top .12s,transform .15s}
+}
+
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;z-index:900;height:var(--nav-h);display:flex;align-items:center;border-bottom:1px solid transparent;transition:background .35s,border-color .35s}
+nav.solid{background:rgba(8,8,9,.9);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border-bottom-color:var(--line)}
+.nav-inner{display:flex;align-items:center;justify-content:space-between;width:100%}
+.nav-logo{display:flex;align-items:center;gap:12px}
+.nav-logo img{width:38px;height:38px;border-radius:50%;border:1.5px solid var(--red);object-fit:cover}
+.nav-logo-text{font-family:'Bebas Neue',sans-serif;font-size:20px;letter-spacing:2.5px;line-height:1}
+.nav-logo-text em{color:var(--red);font-style:normal}
+.nav-links{display:flex;align-items:center;gap:32px}
+.nav-links a{font-size:13px;font-weight:500;letter-spacing:1.2px;text-transform:uppercase;color:var(--muted2);transition:color .25s;position:relative;padding-bottom:2px}
+.nav-links a::after{content:'';position:absolute;bottom:0;left:0;width:0;height:1px;background:var(--red);transition:width .3s}
+.nav-links a:hover{color:var(--white)}
+.nav-links a:hover::after{width:100%}
+.btn-nav{background:var(--red);color:var(--white)!important;padding:10px 22px;border-radius:3px;font-size:12px!important;font-weight:700!important;letter-spacing:1.5px;transition:background .25s,box-shadow .25s}
+.btn-nav::after{display:none!important}
+.btn-nav:hover{background:var(--red2)!important;box-shadow:0 6px 24px var(--glow)}
+
+.ham{display:none;flex-direction:column;gap:5px;padding:6px;z-index:1001;position:relative}
+.ham span{display:block;width:24px;height:1.5px;background:var(--white);transition:.3s;transform-origin:center}
+.ham.open span:nth-child(1){transform:translateY(6.5px) rotate(45deg)}
+.ham.open span:nth-child(2){opacity:0;transform:scaleX(0)}
+.ham.open span:nth-child(3){transform:translateY(-6.5px) rotate(-45deg)}
+
+/* MOBILE NAV */
+.mob-nav{
+  display:none;
+  position:fixed;inset:0;z-index:850;
+  background:var(--d2);
+  flex-direction:column;align-items:center;justify-content:center;gap:0;
+  opacity:0;pointer-events:none;transition:opacity .3s;
+}
+.mob-nav.open{display:flex;opacity:1;pointer-events:auto}
+.mob-nav a{
+  font-family:'Bebas Neue',sans-serif;
+  font-size:clamp(38px,10vw,58px);letter-spacing:3px;
+  color:var(--white);padding:16px 0;
+  border-bottom:1px solid var(--line);width:80%;text-align:center;
+  transition:color .25s;
+}
+.mob-nav a:last-child{border:none}
+.mob-nav a:hover,.mob-nav a:active{color:var(--red)}
+.mob-close{
+  position:absolute;top:22px;right:22px;
+  width:42px;height:42px;display:flex;align-items:center;justify-content:center;
+  background:var(--d4);border-radius:50%;color:var(--white);
+  border:1px solid var(--line);transition:background .25s;
+}
+.mob-close:hover{background:var(--red)}
+
+/* HERO */
+.hero{min-height:100svh;position:relative;display:flex;align-items:flex-end;overflow:hidden}
+.hero-media{position:absolute;inset:0;background:url('https://images.unsplash.com/photo-1594737625785-a6cbdabd333c?w=1800&q=80') center 20%/cover no-repeat}
+.hero-ov{position:absolute;inset:0;background:linear-gradient(to right,rgba(8,8,9,.97) 0%,rgba(8,8,9,.78) 55%,rgba(8,8,9,.3) 100%)}
+.hero-ob{position:absolute;bottom:0;left:0;right:0;height:220px;background:linear-gradient(to top,var(--d1) 0%,transparent 100%)}
+.hero-dots{position:absolute;inset:0;pointer-events:none;background-image:radial-gradient(circle,rgba(255,255,255,.04) 1px,transparent 1px);background-size:32px 32px}
+.hero-body{position:relative;z-index:2;padding:calc(var(--nav-h) + 60px) 0 100px;max-width:680px}
+.eyebrow{display:inline-flex;align-items:center;gap:10px;background:rgba(212,43,79,.1);border:1px solid rgba(212,43,79,.25);color:var(--red2);font-size:11px;font-weight:600;letter-spacing:3px;text-transform:uppercase;padding:7px 18px;border-radius:2px;margin-bottom:32px;animation:up .8s both}
+.blink{width:5px;height:5px;border-radius:50%;background:var(--red);animation:blink 2s infinite}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:.3}}
+.hero h1{font-family:'Bebas Neue',sans-serif;font-size:clamp(72px,11vw,140px);line-height:.88;letter-spacing:2px;animation:up .8s .12s both}
+.line-red{color:var(--red);display:block}
+.line-it{font-family:'Cormorant Garamond',serif;font-style:italic;font-weight:400;font-size:clamp(38px,5.5vw,68px);color:var(--cream);display:block;margin-top:8px;letter-spacing:0}
+.hero-sub{margin-top:28px;font-size:16px;font-weight:300;color:rgba(255,255,255,.55);line-height:1.8;max-width:460px;animation:up .8s .25s both}
+.hero-acts{display:flex;gap:14px;margin-top:44px;flex-wrap:wrap;animation:up .8s .38s both}
+@keyframes up{from{opacity:0;transform:translateY(28px)}to{opacity:1;transform:none}}
+@keyframes fadeI{from{opacity:0}to{opacity:1}}
+
+.btn-fill{background:var(--red);color:var(--white);padding:16px 36px;border-radius:3px;font-size:13px;font-weight:700;letter-spacing:2px;text-transform:uppercase;transition:all .25s;box-shadow:0 8px 28px var(--glow);display:inline-block}
+.btn-fill:hover{background:var(--red2);transform:translateY(-2px);box-shadow:0 16px 36px var(--glow)}
+.btn-ghost{border:1px solid rgba(255,255,255,.22);color:var(--white);padding:16px 36px;border-radius:3px;font-size:13px;font-weight:600;letter-spacing:2px;text-transform:uppercase;transition:all .25s;display:inline-block}
+.btn-ghost:hover{border-color:var(--red);color:var(--red)}
+
+.hero-scroll{position:absolute;bottom:36px;right:48px;z-index:3;display:flex;flex-direction:column;align-items:center;gap:8px;color:var(--muted);font-size:10px;letter-spacing:3px;text-transform:uppercase;animation:fadeI 1s .8s both}
+.strack{width:1px;height:48px;background:var(--line);position:relative;overflow:hidden}
+.strack::after{content:'';position:absolute;top:0;left:0;width:100%;height:40%;background:var(--red);animation:sd 2s infinite}
+@keyframes sd{from{transform:translateY(-100%)}to{transform:translateY(300%)}}
+
+/* TICKER */
+.ticker{background:var(--red);padding:13px 0;overflow:hidden;white-space:nowrap}
+.tick-inner{display:inline-flex;gap:0;animation:tick 30s linear infinite}
+.tick-item{font-family:'Bebas Neue',sans-serif;font-size:16px;letter-spacing:3px;color:var(--white);padding:0 32px;display:flex;align-items:center;gap:32px}
+.tick-item::after{content:'';width:4px;height:4px;border-radius:50%;background:rgba(255,255,255,.4)}
+@keyframes tick{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+
+/* ABOUT */
+.about{background:var(--d2);padding:110px 0}
+.about-grid{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center}
+.about-media{position:relative}
+.about-media::before{content:'';position:absolute;top:-18px;left:-18px;right:18px;bottom:18px;border:1px solid rgba(212,43,79,.2);border-radius:2px;z-index:0}
+.about-media img{width:100%;height:540px;object-fit:cover;border-radius:2px;position:relative;z-index:1;filter:grayscale(15%)}
+.about-badge{position:absolute;bottom:28px;right:-18px;z-index:2;background:var(--red);padding:22px 26px;border-radius:2px;text-align:center;box-shadow:0 20px 50px var(--glow)}
+.about-badge strong{font-family:'Bebas Neue',sans-serif;font-size:52px;line-height:1;display:block;color:var(--white)}
+.about-badge span{font-size:10px;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,.75)}
+.about-text p{font-size:15px;line-height:1.9;color:var(--muted2);margin-bottom:18px}
+.feat-list{display:flex;flex-direction:column;gap:12px;margin-top:32px}
+.feat-item{display:flex;align-items:flex-start;gap:16px;padding:20px 22px;background:var(--d3);border-radius:3px;border-left:2px solid var(--red);transition:transform .3s,background .3s}
+.feat-item:hover{transform:translateX(5px);background:var(--d4)}
+.feat-icon{width:36px;height:36px;flex-shrink:0;color:var(--red);display:flex;align-items:center;justify-content:center}
+.feat-item h4{font-size:14px;font-weight:700;margin-bottom:4px}
+.feat-item p{font-size:13px;color:var(--muted);line-height:1.6;margin:0}
+
+/* SERVICES */
+.services{background:var(--d1);padding:110px 0}
+.svc-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--line);margin-top:60px;border:1px solid var(--line)}
+.svc-card{background:var(--d1);padding:36px 30px 40px;position:relative;overflow:hidden;transition:background .35s}
+.svc-card::before{content:'';position:absolute;inset:0;background:linear-gradient(160deg,var(--red) 0%,transparent 60%);opacity:0;transition:opacity .4s}
+.svc-card:hover{background:var(--d2)}
+.svc-card:hover::before{opacity:.06}
+.svc-img{width:100%;height:200px;object-fit:cover;border-radius:2px;margin-bottom:28px;filter:grayscale(25%);transition:filter .4s}
+.svc-card:hover .svc-img{filter:grayscale(0%)}
+.svc-num{font-family:'Bebas Neue',sans-serif;font-size:52px;color:rgba(212,43,79,.1);line-height:1;position:absolute;top:236px;right:20px;transition:color .35s}
+.svc-card:hover .svc-num{color:rgba(212,43,79,.2)}
+.svc-card h3{font-size:19px;font-weight:700;margin-bottom:10px}
+.svc-card p{font-size:13px;color:var(--muted);line-height:1.75}
+.svc-pill{display:inline-block;margin-top:18px;background:rgba(212,43,79,.1);color:var(--red);border:1px solid rgba(212,43,79,.2);padding:5px 13px;border-radius:100px;font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase}
+
+/* STATS */
+.stats{background:var(--red);padding:80px 0}
+.stats-grid{display:grid;grid-template-columns:repeat(4,1fr)}
+.stat-item{text-align:center;padding:20px;border-right:1px solid rgba(255,255,255,.15)}
+.stat-item:last-child{border-right:none}
+.stat-num{font-family:'Bebas Neue',sans-serif;font-size:clamp(56px,7vw,88px);line-height:1;display:block;color:var(--white)}
+.stat-label{font-size:11px;letter-spacing:2.5px;text-transform:uppercase;color:rgba(255,255,255,.65);margin-top:10px}
+
+/* GALLERY */
+.gallery{background:var(--d2);padding:110px 0}
+.gal-section-title{font-family:'Bebas Neue',sans-serif;font-size:14px;letter-spacing:4px;text-transform:uppercase;color:var(--red);margin:48px 0 16px;padding-bottom:8px;border-bottom:1px solid var(--line)}
+.gal-section-title:first-of-type{margin-top:0}
+.gal-grid{display:grid;grid-template-columns:repeat(12,1fr);grid-template-rows:260px 260px;gap:6px;margin-top:60px}
+.gal-grid-2{display:grid;grid-template-columns:repeat(12,1fr);grid-template-rows:240px 240px;gap:6px;margin-top:6px}
+.gal{overflow:hidden;position:relative}
+.gal-label{position:absolute;bottom:14px;left:14px;z-index:3;font-size:10px;letter-spacing:2.5px;text-transform:uppercase;color:rgba(255,255,255,.9);background:rgba(8,8,9,.6);backdrop-filter:blur(6px);padding:5px 12px;border-radius:2px;border-left:2px solid var(--red);opacity:0;transform:translateY(6px);transition:opacity .35s,transform .35s}
+.gal:hover .gal-label{opacity:1;transform:none}
+.gal:nth-child(1){grid-column:span 5;grid-row:span 2}
+.gal:nth-child(2){grid-column:span 4}
+.gal:nth-child(3){grid-column:span 3}
+.gal:nth-child(4){grid-column:span 3}
+.gal:nth-child(5){grid-column:span 4}
+.gal-grid-2 .gal:nth-child(1){grid-column:span 3}
+.gal-grid-2 .gal:nth-child(2){grid-column:span 3}
+.gal-grid-2 .gal:nth-child(3){grid-column:span 6;grid-row:span 2}
+.gal-grid-2 .gal:nth-child(4){grid-column:span 3}
+.gal-grid-2 .gal:nth-child(5){grid-column:span 3}
+.gal img{width:100%;height:100%;object-fit:cover;filter:grayscale(20%)brightness(.85);transition:transform .55s cubic-bezier(.22,1,.36,1),filter .4s}
+.gal:hover img{transform:scale(1.07);filter:grayscale(0%)brightness(1)}
+.gal-ov{position:absolute;inset:0;background:linear-gradient(to top,rgba(8,8,9,.75) 0%,transparent 55%);opacity:0;transition:opacity .4s}
+.gal:hover .gal-ov{opacity:1}
+
+/* BENEFITS */
+.benefits{background:var(--d2);padding:110px 0}
+.ben-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:60px}
+.ben-card{position:relative;background:var(--d3);border:1px solid var(--line);border-radius:4px;padding:36px 30px 32px;overflow:hidden;transition:border-color .35s,transform .35s,background .35s}
+.ben-card::after{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:var(--red);transform:scaleX(0);transform-origin:left;transition:transform .4s cubic-bezier(.22,1,.36,1)}
+.ben-card:hover{border-color:rgba(212,43,79,.3);transform:translateY(-5px);background:var(--d4)}
+.ben-card:hover::after{transform:scaleX(1)}
+.ben-icon{width:52px;height:52px;border-radius:10px;background:rgba(212,43,79,.1);display:flex;align-items:center;justify-content:center;color:var(--red);margin-bottom:20px;transition:background .3s}
+.ben-card:hover .ben-icon{background:rgba(212,43,79,.18)}
+.ben-card h4{font-size:17px;font-weight:700;margin-bottom:10px;color:var(--white)}
+.ben-card p{font-size:13px;color:var(--muted);line-height:1.8}
+.ben-vs{display:inline-flex;align-items:center;gap:6px;margin-top:14px;font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--red)}
+.ben-vs::before{content:'✓';font-size:12px}
+.ben-badge{position:absolute;top:18px;right:18px;background:rgba(212,43,79,.12);color:var(--red);font-size:9px;font-weight:700;letter-spacing:2px;text-transform:uppercase;padding:4px 10px;border-radius:100px;border:1px solid rgba(212,43,79,.2)}
+
+/* WHY */
+.why{background:var(--d1);padding:110px 0}
+.why-grid{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center}
+.why-cards{display:flex;flex-direction:column;gap:12px}
+.why-card{display:flex;gap:18px;align-items:flex-start;padding:24px 26px;background:var(--d3);border-radius:3px;border:1px solid var(--line);transition:border-color .3s,background .3s}
+.why-card:hover{border-color:rgba(212,43,79,.25);background:var(--d4)}
+.why-icon{width:44px;height:44px;flex-shrink:0;background:rgba(212,43,79,.1);border-radius:6px;display:flex;align-items:center;justify-content:center;color:var(--red)}
+.why-card h4{font-size:15px;font-weight:700;margin-bottom:5px}
+.why-card p{font-size:13px;color:var(--muted);line-height:1.7}
+.why-visual{position:relative}
+.why-visual img{width:100%;height:600px;object-fit:cover;border-radius:3px;object-position:top}
+.why-tag{position:absolute;top:28px;left:-20px;writing-mode:vertical-rl;transform:rotate(180deg);font-family:'Bebas Neue',sans-serif;font-size:18px;letter-spacing:4px;color:var(--red);background:var(--d2);padding:18px 14px;border:1px solid rgba(212,43,79,.2);border-radius:2px}
+
+/* CTA BAND */
+.cta-band{background:var(--d3);border-top:1px solid rgba(212,43,79,.12);border-bottom:1px solid rgba(212,43,79,.12);padding:90px 0}
+.cta-inner{display:flex;align-items:center;justify-content:space-between;gap:40px;flex-wrap:wrap}
+.cta-inner h2{font-family:'Bebas Neue',sans-serif;font-size:clamp(40px,5.5vw,70px);letter-spacing:1px;line-height:.95}
+.cta-inner h2 span{color:var(--red)}
+.cta-inner p{font-size:15px;color:var(--muted);margin-top:12px}
+.cta-btns{display:flex;gap:14px;flex-wrap:wrap;flex-shrink:0}
+
+/* CONTACT */
+.contact{background:var(--d2);padding:110px 0}
+.contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:60px;margin-top:60px}
+.contact-cards{display:flex;flex-direction:column;gap:12px}
+.cc{display:flex;gap:18px;align-items:flex-start;padding:24px;background:var(--d3);border-radius:3px;border:1px solid var(--line);transition:border-color .3s}
+.cc:hover{border-color:rgba(212,43,79,.2)}
+.c-icon{width:44px;height:44px;flex-shrink:0;background:rgba(212,43,79,.1);border-radius:6px;display:flex;align-items:center;justify-content:center;color:var(--red)}
+.cc h4{font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--muted);margin-bottom:6px}
+.cc p,.cc a{font-size:14px;color:var(--white);line-height:1.6}
+.cc a:hover{color:var(--red)}
+.map-wrap iframe{width:100%;height:100%;min-height:420px;border-radius:3px;border:1px solid var(--line);filter:grayscale(60%)invert(90%)hue-rotate(180deg)}
+
+/* INSTA */
+.insta{background:var(--d1);padding:90px 0;text-align:center;border-top:1px solid var(--line)}
+.insta p{color:var(--muted);font-size:15px;margin-bottom:32px}
+.insta-btn{display:inline-flex;align-items:center;gap:12px;background:linear-gradient(135deg,#833AB4 0%,#E1306C 50%,#F77737 100%);color:var(--white);padding:18px 44px;border-radius:100px;font-size:15px;font-weight:700;letter-spacing:1px;transition:transform .3s,box-shadow .3s;box-shadow:0 10px 40px rgba(225,48,108,.3)}
+.insta-btn:hover{transform:translateY(-3px);box-shadow:0 20px 50px rgba(225,48,108,.45)}
+
+/* FOOTER */
+footer{background:var(--d2);padding:70px 0 28px;border-top:1px solid var(--line)}
+.foot-grid{display:grid;grid-template-columns:2fr 1fr 1fr;gap:60px;margin-bottom:50px}
+.f-logo{display:flex;align-items:center;gap:12px;margin-bottom:16px}
+.f-logo img{width:38px;height:38px;border-radius:50%;border:1.5px solid var(--red);object-fit:cover}
+.f-logo-text{font-family:'Bebas Neue',sans-serif;font-size:19px;letter-spacing:2px}
+.f-logo-text em{color:var(--red);font-style:normal}
+.f-brand p{font-size:13px;color:var(--muted);line-height:1.85;max-width:280px}
+.f-social{display:flex;gap:10px;margin-top:22px}
+.f-social a{width:36px;height:36px;border-radius:6px;background:var(--d4);border:1px solid var(--line);display:flex;align-items:center;justify-content:center;color:var(--muted);transition:all .25s}
+.f-social a:hover{background:var(--red);border-color:var(--red);color:var(--white)}
+.f-col h5{font-size:11px;letter-spacing:2.5px;text-transform:uppercase;color:var(--muted);margin-bottom:20px}
+.f-col ul{display:flex;flex-direction:column;gap:12px}
+.f-col ul a{font-size:13px;color:rgba(255,255,255,.55);transition:color .25s}
+.f-col ul a:hover{color:var(--red)}
+.foot-bottom{display:flex;justify-content:space-between;align-items:center;padding-top:24px;border-top:1px solid var(--line);flex-wrap:wrap;gap:10px}
+.foot-bottom p{font-size:12px;color:var(--muted)}
+.foot-bottom a{color:var(--red)}
+
+/* WA FAB */
+.wa-fab{position:fixed;bottom:28px;right:28px;z-index:800;width:56px;height:56px;border-radius:50%;background:#25D366;box-shadow:0 8px 28px rgba(37,211,102,.35);display:flex;align-items:center;justify-content:center;transition:transform .25s,box-shadow .25s;animation:up .8s 1s both}
+.wa-fab:hover{transform:scale(1.1);box-shadow:0 14px 36px rgba(37,211,102,.5)}
+
+/* RESPONSIVE */
+@media(max-width:1100px){
+  .svc-grid{grid-template-columns:repeat(2,1fr)}
+  .stats-grid{grid-template-columns:repeat(2,1fr)}
+  .stat-item{border-bottom:1px solid rgba(255,255,255,.1)}
+  .gal-grid{grid-template-columns:repeat(2,1fr);grid-template-rows:auto;grid-auto-rows:220px}
+  .gal-grid-2{grid-template-columns:repeat(2,1fr);grid-template-rows:auto;grid-auto-rows:200px}
+  .gal:nth-child(n){grid-column:span 1;grid-row:span 1}
+  .gal:nth-child(1){grid-column:span 2;grid-row:span 1}
+  .gal-grid-2 .gal:nth-child(n){grid-column:span 1;grid-row:span 1}
+  .gal-grid-2 .gal:nth-child(3){grid-column:span 2;grid-row:span 1}
+  .ben-grid{grid-template-columns:repeat(2,1fr)}
+}
+@media(max-width:900px){
+  .about-grid,.why-grid,.contact-grid,.foot-grid{grid-template-columns:1fr;gap:40px}
+  .about-media img{height:340px}
+  .about-badge{right:16px;bottom:16px}
+  .why-visual img{height:300px}
+  .why-tag{left:-14px;padding:14px 10px}
+  .nav-links{display:none}
+  .ham{display:flex}
+  .hero-scroll{display:none}
+  .cta-band{padding:70px 0}
+  .foot-grid{grid-template-columns:1fr 1fr}
+  .f-brand{grid-column:span 2}
+}
+@media(max-width:640px){
+  .svc-grid{grid-template-columns:1fr}
+  .stats-grid{grid-template-columns:1fr 1fr}
+  .gal-grid{grid-template-columns:1fr 1fr;grid-auto-rows:160px}
+  .gal-grid-2{grid-template-columns:1fr 1fr;grid-auto-rows:150px}
+  .gal:nth-child(1){grid-column:span 2}
+  .gal-grid-2 .gal:nth-child(3){grid-column:span 2}
+  .ben-grid{grid-template-columns:1fr}
+  .foot-grid{grid-template-columns:1fr}
+  .f-brand{grid-column:span 1}
+  .cta-inner{text-align:center}
+  .cta-btns{justify-content:center}
+  .about,.services,.stats,.gallery,.why,.contact,.benefits{padding:70px 0}
+  .wa-fab{bottom:20px;right:16px;width:50px;height:50px}
+}
+</style>
+</head>
+<body>
+
+<div class="cdot" id="cDot"></div>
+<div class="cring" id="cRing"></div>
+
+<a href="https://wa.me/917032616130" target="_blank" class="wa-fab" aria-label="WhatsApp">
+  <svg width="26" height="26" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+</a>
+
+<!-- MOBILE NAV -->
+<div class="mob-nav" id="mobNav">
+  <button class="mob-close" id="mobClose" aria-label="Close">
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 6L6 18M6 6l12 12"/></svg>
+  </button>
+  <a href="#home">Home</a>
+  <a href="#about">About</a>
+  <a href="#services">Services</a>
+  <a href="#gallery">Gallery</a>
+  <a href="#contact">Contact</a>
+</div>
+
+<!-- NAV -->
+<nav id="nav">
+  <div class="container">
+    <div class="nav-inner">
+      <a href="#home" class="nav-logo">
+        <img src="https://lh3.googleusercontent.com/-KdzvMhdejaQ/AAAAAAAAAAI/AAAAAAAAAAA/zPgMVMULs98/s44-p-k-no-ns-nd/photo.jpg" alt="Healthy U logo">
+        <span class="nav-logo-text">HEALTHY <em>U</em></span>
+      </a>
+      <ul class="nav-links">
+        <li><a href="#home">Home</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#services">Services</a></li>
+        <li><a href="#gallery">Gallery</a></li>
+        <li><a href="#contact" class="btn-nav">Join Now</a></li>
+      </ul>
+      <button class="ham" id="hamBtn" aria-label="Open menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="home">
+  <div class="hero-media"></div>
+  <div class="hero-ov"></div>
+  <div class="hero-ob"></div>
+  <div class="hero-dots"></div>
+  <div class="container">
+    <div class="hero-body">
+      <div class="eyebrow"><span class="blink"></span>Women-Only Fitness Studio · Hyderabad</div>
+      <h1>
+        TRAIN LIKE
+        <span class="line-red">A QUEEN</span>
+        <span class="line-it">Feel Unstoppable</span>
+      </h1>
+      <p class="hero-sub">Premium fitness center exclusively for women at Attapur, Upperpally. Certified female trainers, personalized programs — zero judgment, pure results.</p>
+      <div class="hero-acts">
+        <a href="#contact" class="btn-fill">Join the Studio</a>
+        <a href="#services" class="btn-ghost">Our Programs</a>
+      </div>
+    </div>
+  </div>
+  <div class="hero-scroll">
+    <div class="strack"></div>
+    <span>Scroll</span>
+  </div>
+</section>
+
+<!-- TICKER -->
+<div class="ticker" aria-hidden="true">
+  <div class="tick-inner">
+    <span class="tick-item">Aerobics</span><span class="tick-item">Personal Training</span><span class="tick-item">Weight Training</span><span class="tick-item">Yoga Classes</span><span class="tick-item">Cardio</span><span class="tick-item">Strength</span><span class="tick-item">Flexibility</span><span class="tick-item">Women Only</span>
+    <span class="tick-item">Aerobics</span><span class="tick-item">Personal Training</span><span class="tick-item">Weight Training</span><span class="tick-item">Yoga Classes</span><span class="tick-item">Cardio</span><span class="tick-item">Strength</span><span class="tick-item">Flexibility</span><span class="tick-item">Women Only</span>
+  </div>
+</div>
+
+<!-- ABOUT -->
+<section class="about" id="about">
+  <div class="container">
+    <div class="about-grid">
+      <div class="about-media rl">
+        <img src="https://images.unsplash.com/photo-1518611012118-696072aa579a?w=900&q=80" alt="Women fitness studio">
+        <div class="about-badge"><strong>100%</strong><span>Women Only Space</span></div>
+      </div>
+      <div class="rr">
+        <span class="tag">About Us</span>
+        <h2 class="title">Your Safe Space<br>to <span class="accent">Grow Stronger</span></h2>
+        <p class="about-text">Healthy U Fitness Studio is a premium fitness center exclusively for women, dedicated to creating a safe, comfortable, and distraction-free workout environment in Attapur, Upperpally, Hyderabad.</p>
+        <p class="about-text">We offer personalized training and group workout sessions including cardio, aerobics, strength training, and flexibility programs — all guided by certified and experienced female trainers.</p>
+        <div class="feat-list">
+          <div class="feat-item reveal d1">
+            <div class="feat-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div>
+            <div><h4>Certified Female Trainers</h4><p>Expert guidance from certified women who understand your body</p></div>
+          </div>
+          <div class="feat-item reveal d2">
+            <div class="feat-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="10"/><path d="M8 12l3 3 5-5"/></svg></div>
+            <div><h4>100% Women-Only Environment</h4><p>Safe, comfortable and completely distraction-free space</p></div>
+          </div>
+          <div class="feat-item reveal d3">
+            <div class="feat-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></div>
+            <div><h4>Personalized Programs</h4><p>Custom fitness plans tailored to your unique goals and body type</p></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section class="services" id="services">
+  <div class="container">
+    <span class="tag reveal">What We Offer</span>
+    <h2 class="title reveal">Our <span class="muted">Programs</span></h2>
+    <div class="svc-grid">
+      <div class="svc-card reveal d1">
+        <img class="svc-img" src="https://images.unsplash.com/photo-1571019614242-c5c5dee9f50b?w=600&q=80" alt="Aerobics">
+        <div class="svc-num">01</div>
+        <h3>Aerobics</h3>
+        <p>High-energy group sessions that boost cardiovascular health, burn calories, and lift your mood — set to motivating music.</p>
+        <span class="svc-pill">Group Class</span>
+      </div>
+      <div class="svc-card reveal d2">
+        <img class="svc-img" src="https://images.unsplash.com/photo-1545205597-3d9d02c29597?w=600&q=80" alt="Personal Training">
+        <div class="svc-num">02</div>
+        <h3>Personal Training</h3>
+        <p>One-on-one sessions with certified trainers to build a routine that fits your body, lifestyle, and specific fitness goals.</p>
+        <span class="svc-pill">1-on-1</span>
+      </div>
+      <div class="svc-card reveal d3">
+        <img class="svc-img" src="https://images.unsplash.com/photo-1536922246289-88c42f957773?w=600&q=80" alt="Weight Training">
+        <div class="svc-num">03</div>
+        <h3>Weight Training</h3>
+        <p>Strength programs designed for women — build lean muscle, boost metabolism, and feel powerful in your own body.</p>
+        <span class="svc-pill">Strength</span>
+      </div>
+      <div class="svc-card reveal d4">
+        <img class="svc-img" src="https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?w=600&q=80" alt="Yoga">
+        <div class="svc-num">04</div>
+        <h3>Yoga Classes</h3>
+        <p>Rejuvenating sessions focused on flexibility, balance, and mental wellness. Find calm and build core strength naturally.</p>
+        <span class="svc-pill">Mind &amp; Body</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- STATS -->
+<div class="stats">
+  <div class="container">
+    <div class="stats-grid">
+      <div class="stat-item reveal d1"><span class="stat-num" data-count="500">0</span><p class="stat-label">Happy Members</p></div>
+      <div class="stat-item reveal d2"><span class="stat-num">4+</span><p class="stat-label">Programs Offered</p></div>
+      <div class="stat-item reveal d3"><span class="stat-num">7</span><p class="stat-label">Star Reviews</p></div>
+      <div class="stat-item reveal d4"><span class="stat-num">100%</span><p class="stat-label">Women Only</p></div>
+    </div>
+  </div>
+</div>
+
+<!-- GALLERY -->
+<section class="gallery" id="gallery">
+  <div class="container">
+    <span class="tag reveal">Inside the Studio</span>
+    <h2 class="title reveal">Our <span class="muted">Gallery</span></h2>
+
+    <!-- Row 1: Equipment -->
+    <p class="gal-section-title reveal">Equipment & Training Floor</p>
+    <div class="gal-grid">
+      <div class="gal reveal d1">
+        <img src="https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=900&q=80" alt="Treadmill">
+        <div class="gal-ov"></div>
+        <span class="gal-label">Treadmill Zone</span>
+      </div>
+      <div class="gal reveal d2">
+        <img src="https://images.unsplash.com/photo-1598971861713-54ad16a7e72e?w=700&q=80" alt="Cross Training">
+        <div class="gal-ov"></div>
+        <span class="gal-label">Cross Training</span>
+      </div>
+      <div class="gal reveal d3">
+        <img src="https://images.unsplash.com/photo-1517836357463-d25dfeac3438?w=600&q=80" alt="Cycle Studio">
+        <div class="gal-ov"></div>
+        <span class="gal-label">Cycling Studio</span>
+      </div>
+      <div class="gal reveal d4">
+        <img src="https://images.unsplash.com/photo-1534438327276-14e5300c3a48?w=600&q=80" alt="Gym Interior">
+        <div class="gal-ov"></div>
+        <span class="gal-label">Studio Floor</span>
+      </div>
+      <div class="gal reveal d5">
+        <img src="https://images.unsplash.com/photo-1540497077202-7c8a3999166f?w=700&q=80" alt="Weight Area">
+        <div class="gal-ov"></div>
+        <span class="gal-label">Weight Area</span>
+      </div>
+    </div>
+
+    <!-- Row 2: Classes & Activities -->
+    <p class="gal-section-title reveal">Classes & Activities</p>
+    <div class="gal-grid-2">
+      <div class="gal reveal d1">
+        <img src="https://images.unsplash.com/photo-1506629082955-511b1aa562c8?w=600&q=80" alt="Yoga">
+        <div class="gal-ov"></div>
+        <span class="gal-label">Yoga Sessions</span>
+      </div>
+      <div class="gal reveal d2">
+        <img src="https://images.unsplash.com/photo-1549060279-7e168fcee0c2?w=600&q=80" alt="Zumba">
+        <div class="gal-ov"></div>
+        <span class="gal-label">Zumba Dance</span>
+      </div>
+      <div class="gal reveal d3">
+        <img src="https://images.unsplash.com/photo-1571019614242-c5c5dee9f50b?w=800&q=80" alt="Group Exercise">
+        <div class="gal-ov"></div>
+        <span class="gal-label">Group Exercise</span>
+      </div>
+      <div class="gal reveal d4">
+        <img src="https://images.unsplash.com/photo-1518611012118-696072aa579a?w=600&q=80" alt="Aerobics">
+        <div class="gal-ov"></div>
+        <span class="gal-label">Aerobics</span>
+      </div>
+      <div class="gal reveal d5">
+        <img src="https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?w=600&q=80" alt="Yoga Interior">
+        <div class="gal-ov"></div>
+        <span class="gal-label">Yoga Studio</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- BENEFITS: FITNESS STUDIO VS GYM -->
+<section class="benefits">
+  <div class="container">
+    <span class="tag reveal">Why It Matters</span>
+    <h2 class="title reveal">Fitness Studio <span class="accent">vs</span> <span class="muted">Regular Gym</span></h2>
+    <p class="reveal" style="font-size:15px;color:var(--muted2);max-width:560px;line-height:1.85;margin-bottom:0">A fitness studio isn't just a smaller gym — it's a completely different experience built around your success. Here's why members choose us.</p>
+    <div class="ben-grid" style="margin-top:48px">
+
+      <div class="ben-card reveal d1">
+        <span class="ben-badge">Studio Edge</span>
+        <div class="ben-icon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87"/><path d="M16 3.13a4 4 0 010 7.75"/></svg>
+        </div>
+        <h4>Personal Attention, Not a Number</h4>
+        <p>In a large gym you're one of hundreds. At our studio, trainers know your name, your goals, and your progress — every single session.</p>
+        <span class="ben-vs">1-on-1 focus guaranteed</span>
+      </div>
+
+      <div class="ben-card reveal d2">
+        <span class="ben-badge">Studio Edge</span>
+        <div class="ben-icon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+        </div>
+        <h4>Women-Only Safe Space</h4>
+        <p>No staring, no intimidation, no discomfort. Our exclusively women-only environment means you can focus entirely on your workout.</p>
+        <span class="ben-vs">100% distraction-free zone</span>
+      </div>
+
+      <div class="ben-card reveal d3">
+        <span class="ben-badge">Studio Edge</span>
+        <div class="ben-icon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+        </div>
+        <h4>Structured Programs That Deliver Results</h4>
+        <p>Unlike open gyms where you wander equipment, our programs are structured, progressive, and specifically designed for women's bodies and goals.</p>
+        <span class="ben-vs">Measurable results every month</span>
+      </div>
+
+      <div class="ben-card reveal d1">
+        <span class="ben-badge">Studio Edge</span>
+        <div class="ben-icon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="10"/><path d="M8 12l3 3 5-5"/></svg>
+        </div>
+        <h4>Accountability & Community</h4>
+        <p>Group classes build real bonds. You'll find a community of women who motivate each other — something no commercial gym can replicate.</p>
+        <span class="ben-vs">Stronger together</span>
+      </div>
+
+      <div class="ben-card reveal d2">
+        <span class="ben-badge">Studio Edge</span>
+        <div class="ben-icon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
+        </div>
+        <h4>Curated, Purpose-Built Classes</h4>
+        <p>From Yoga and Zumba to Aerobics and Cross Training — every class is curated for a specific outcome, not just to fill a schedule slot.</p>
+        <span class="ben-vs">Yoga · Zumba · Aerobics · Cross Training</span>
+      </div>
+
+      <div class="ben-card reveal d3">
+        <span class="ben-badge">Studio Edge</span>
+        <div class="ben-icon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/></svg>
+        </div>
+        <h4>Holistic Wellness, Not Just Weights</h4>
+        <p>We address your physical, mental, and emotional wellbeing through mindful programming — because true fitness is more than just lifting heavy.</p>
+        <span class="ben-vs">Mind, body & soul approach</span>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- WHY -->
+<section class="why">
+  <div class="container">
+    <div class="why-grid">
+      <div class="why-cards">
+        <div class="reveal">
+          <span class="tag">Why Choose Us</span>
+          <h2 class="title">Built for <span class="accent">Women.</span><br><span class="muted">By Women.</span></h2>
+        </div>
+        <div class="why-card reveal d1">
+          <div class="why-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg></div>
+          <div><h4>Expert Guidance</h4><p>Certified trainers design programs that work for women's physiology — no generic plans.</p></div>
+        </div>
+        <div class="why-card reveal d2">
+          <div class="why-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/></svg></div>
+          <div><h4>Judgment-Free Zone</h4><p>Beginner or advanced — our welcoming environment lets you train at your own pace.</p></div>
+        </div>
+        <div class="why-card reveal d3">
+          <div class="why-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg></div>
+          <div><h4>Results-Driven Programs</h4><p>Every session is tailored to maximize your results efficiently and sustainably.</p></div>
+        </div>
+        <div class="why-card reveal d4">
+          <div class="why-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg></div>
+          <div><h4>Convenient Location</h4><p>Pillar No. 215, Happy Homes Colony, Attapur Upperpally — easily accessible from Hyderabad.</p></div>
+        </div>
+      </div>
+      <div class="why-visual rr">
+        <img src="https://images.unsplash.com/photo-1607962837359-5e7e89f86776?w=800&q=80" alt="Women fitness">
+        <div class="why-tag">Empower</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA BAND -->
+<div class="cta-band">
+  <div class="container">
+    <div class="cta-inner reveal">
+      <div>
+        <h2>Ready to Start Your<br><span>Fitness Journey?</span></h2>
+        <p>Join hundreds of women who've transformed their lives at Healthy U</p>
+      </div>
+      <div class="cta-btns">
+        <a href="https://wa.me/917032616130" target="_blank" class="btn-fill">WhatsApp Us</a>
+        <a href="https://www.google.com/maps/place/?q=place_id:ChIJi74xiLqXyzsRPOHqAoROjAA" target="_blank" class="btn-ghost">Get Directions</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- CONTACT -->
+<section class="contact" id="contact">
+  <div class="container">
+    <span class="tag reveal">Get In Touch</span>
+    <h2 class="title reveal">Visit <span class="muted">The Studio</span></h2>
+    <div class="contact-grid">
+      <div class="contact-cards">
+        <div class="cc reveal d1">
+          <div class="c-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg></div>
+          <div><h4>Address</h4><p>Pillar Number 215, Happy Homes Colony, Park View Apt, 1st Floor Behind IB Palace, Attapur Upperpally, Hyderabad, Telangana 500030</p></div>
+        </div>
+        <div class="cc reveal d2">
+          <div class="c-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></div>
+          <div><h4>Working Hours</h4><p>Monday – Saturday: 6:00 AM – 9:00 PM<br>Sunday: 7:00 AM – 2:00 PM</p></div>
+        </div>
+        <div class="cc reveal d3">
+          <div class="c-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81a19.79 19.79 0 01-3.07-8.67A2 2 0 012 1h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 8.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg></div>
+          <div><h4>Phone / WhatsApp</h4><a href="tel:+917032616130">+91 70326 16130</a></div>
+        </div>
+        <div class="cc reveal d4">
+          <div class="c-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg></div>
+          <div><h4>Instagram</h4><a href="https://www.instagram.com/healthyufitnessstudio?igsh=MWRvbTFreGljbWphbg==" target="_blank">@healthyufitnessstudio</a></div>
+        </div>
+      </div>
+      <div class="map-wrap rr">
+        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3807.7963738963!2d78.38891!3d17.37612!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bcb97ba711bbef!2sHealthy+U+Fitness+Studio!5e0!3m2!1sen!2sin!4v1234567890" allowfullscreen loading="lazy" title="Location"></iframe>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- INSTA -->
+<div class="insta">
+  <div class="container">
+    <span class="tag" style="justify-content:center">Social Media</span>
+    <h2 class="title reveal" style="text-align:center">Follow Our <span class="accent">Journey</span></h2>
+    <p class="reveal">Stay inspired with daily workouts, tips and transformations</p>
+    <br>
+    <div class="reveal">
+      <a href="https://www.instagram.com/healthyufitnessstudio?igsh=MWRvbTFreGljbWphbg==" target="_blank" class="insta-btn">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="white"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+        @healthyufitnessstudio
+      </a>
+    </div>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="container">
+    <div class="foot-grid">
+      <div class="f-brand">
+        <div class="f-logo">
+          <img src="https://lh3.googleusercontent.com/-KdzvMhdejaQ/AAAAAAAAAAI/AAAAAAAAAAA/zPgMVMULs98/s44-p-k-no-ns-nd/photo.jpg" alt="Logo">
+          <span class="f-logo-text">HEALTHY <em>U</em> FITNESS</span>
+        </div>
+        <p>Premium fitness center exclusively for women in Attapur, Upperpally, Hyderabad. Safe, comfortable, and results-driven.</p>
+        <div class="f-social">
+          <a href="https://www.instagram.com/healthyufitnessstudio?igsh=MWRvbTFreGljbWphbg==" target="_blank" aria-label="Instagram">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+          </a>
+          <a href="https://wa.me/917032616130" target="_blank" aria-label="WhatsApp">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+          </a>
+          <a href="https://www.google.com/maps/place/?q=place_id:ChIJi74xiLqXyzsRPOHqAoROjAA" target="_blank" aria-label="Maps">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+          </a>
+        </div>
+      </div>
+      <div class="f-col">
+        <h5>Quick Links</h5>
+        <ul>
+          <li><a href="#home">Home</a></li>
+          <li><a href="#about">About Us</a></li>
+          <li><a href="#services">Services</a></li>
+          <li><a href="#gallery">Gallery</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </div>
+      <div class="f-col">
+        <h5>Programs</h5>
+        <ul>
+          <li><a href="#services">Aerobics</a></li>
+          <li><a href="#services">Personal Training</a></li>
+          <li><a href="#services">Weight Training</a></li>
+          <li><a href="#services">Yoga Classes</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <p>© 2026 Healthy U Fitness Studio. All rights reserved.</p>
+      <p>Designed by <a href="http://www.idesign4u.in" target="_blank">iDesign4U</a></p>
+    </div>
+  </div>
+</footer>
+
+<script>
+/* cursor */
+const dot=document.getElementById('cDot'),ring=document.getElementById('cRing');
+if(dot&&ring){
+  let rx=0,ry=0;
+  document.addEventListener('mousemove',e=>{
+    dot.style.left=e.clientX+'px';dot.style.top=e.clientY+'px';
+    rx+=(e.clientX-rx)*.13;ry+=(e.clientY-ry)*.13;
+    ring.style.left=rx+'px';ring.style.top=ry+'px';
+  });
+  const frame=()=>{requestAnimationFrame(frame)};frame();
+  document.querySelectorAll('a,button').forEach(el=>{
+    el.addEventListener('mouseenter',()=>{dot.style.transform='translate(-50%,-50%) scale(2.5)';ring.style.transform='translate(-50%,-50%) scale(1.6)'});
+    el.addEventListener('mouseleave',()=>{dot.style.transform='translate(-50%,-50%) scale(1)';ring.style.transform='translate(-50%,-50%) scale(1)'});
+  });
+}
+
+/* navbar */
+const nav=document.getElementById('nav');
+window.addEventListener('scroll',()=>nav.classList.toggle('solid',window.scrollY>50),{passive:true});
+
+/* hamburger + mobile nav */
+const hamBtn=document.getElementById('hamBtn');
+const mobNav=document.getElementById('mobNav');
+const mobClose=document.getElementById('mobClose');
+
+function openNav(){
+  mobNav.classList.add('open');
+  hamBtn.classList.add('open');
+  document.body.style.overflow='hidden';
+}
+function closeNav(){
+  mobNav.classList.remove('open');
+  hamBtn.classList.remove('open');
+  document.body.style.overflow='';
+}
+
+hamBtn.addEventListener('click',()=>mobNav.classList.contains('open')?closeNav():openNav());
+mobClose.addEventListener('click',closeNav);
+mobNav.querySelectorAll('a').forEach(a=>a.addEventListener('click',closeNav));
+
+/* scroll reveal */
+const io=new IntersectionObserver(entries=>{
+  entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}});
+},{threshold:0.1});
+document.querySelectorAll('.reveal,.rl,.rr').forEach(el=>io.observe(el));
+
+/* counters */
+const cio=new IntersectionObserver(entries=>{
+  entries.forEach(e=>{
+    if(!e.isIntersecting)return;
+    const el=e.target,target=+el.dataset.count;
+    if(!target)return;
+    let n=0,step=target/55;
+    const t=setInterval(()=>{n+=step;if(n>=target){el.textContent=target+'+';clearInterval(t)}else el.textContent=Math.floor(n)+'+'},28);
+    cio.unobserve(el);
+  });
+},{threshold:.5});
+document.querySelectorAll('[data-count]').forEach(el=>cio.observe(el));
+</script>
+</body>
+</html>
